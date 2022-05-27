@@ -1,0 +1,35 @@
+framework:
+  messenger:
+    transports:
+      failure_transport: failed
+      async:
+        dsn: "%env(MESSENGER_TRANSPORT_DSN)%"
+        failure_transport: failed
+        retry_strategy:
+          max_retries: 0
+        options:
+              stream: messsages
+              group: messsages
+              auto_setup: true
+              serializer: 1
+              stream_max_entries: 0
+              dbindex: 0
+              delete_after_ack: true
+              consumer: "%env(MESSENGER_CONSUMER_NAME)%"
+      failed:
+        dsn: "%env(MESSENGER_TRANSPORT_DSN)%"
+        retry_strategy:
+            max_retries: 3
+            delay: 1000
+            multiplier: 3
+        options:
+            stream: failed
+            group: failed
+            auto_setup: true
+            serializer: 1
+            stream_max_entries: 0
+            dbindex: 0
+            delete_after_ack: true
+            consumer: "%env(MESSENGER_CONSUMER_NAME)%"
+    routing:
+      App\Messenger\Message: async
