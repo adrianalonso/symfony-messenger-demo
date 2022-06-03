@@ -1,12 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Messenger;
 
-class Message
+final class Message
 {
-    public function __construct(
-        protected int $identifier
-    )
+    public function __construct(protected int $identifier)
     {
     }
 
@@ -14,5 +14,4 @@ class Message
     {
         return $this->identifier;
     }
-
 }

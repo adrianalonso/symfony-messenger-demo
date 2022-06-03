@@ -1,5 +1,9 @@
 framework:
   messenger:
+    buses:
+      messenger.bus.default:
+        middleware:
+          - App\Messenger\MessageMiddleware
     transports:
       failure_transport: failed
       async:

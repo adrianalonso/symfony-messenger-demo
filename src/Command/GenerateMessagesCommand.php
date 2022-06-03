@@ -16,7 +16,6 @@ class GenerateMessagesCommand extends Command
 {
     protected static $defaultName = 'app:demo:messages';
 
-
     public function __construct(
         protected MessageBusInterface $bus,
         string                        $name = null
@@ -27,9 +26,7 @@ class GenerateMessagesCommand extends Command
 
     protected function configure()
     {
-        $this
-            ->setDescription('Deletes rejected and spam comments from the database')
-            ->addArgument('num', InputArgument::REQUIRED, 'Number of Messages');
+        $this->addArgument('num', InputArgument::REQUIRED, 'Number of Messages');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
